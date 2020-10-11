@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>知乎版文章列表</title>
+    <!-- SEO 优先级 title最高，h1-6次之 
+             关注点 图片的alt属性-->
+    <!-- 网页默认background-color为透明 -->
+    <!-- flex相关设置 -->
+    <!-- box-shadow相关设置 -->
+    <!-- 纯CSS设置递增数字——计数器 -->
+    <!-- 纯CSS控制元素样式——选择器 -->
+    <!-- 
+        字体图标
+        svg
+        网址 iconfont.com
+        搜索关键词
+        加入购物车（星号）
+        下载代码
+     -->
+    <style>
+        body,h2,p {
+            /*  *通配符 有性能问题，但小项目完全可以使用 */
+            margin: 0;
+        }
+        ol{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        a{
+            text-decoration: none;
+        }
+        .hot {
+            width: 694px;
+            margin: 50px auto 0 auto;
+            background: #fff;
+            box-shadow: 0 1px 3px rgba(26, 26, 26, .5);
+            /* 6个值
+            1. inset/[默认]outset 
+            2. [offset-X]X偏移量 
+            3. [offset-Y]Y偏移量 
+            4. [模糊]
+            5. [扩展半径]
+            6. [颜色]
+            */
+        }
+        .hot li {
+            padding: 16px 16px 16px 0;
+            border-bottom: 1px solid #ebebeb;
+            display: flex;
+        }
+        .hot .hot_item{
+            width: 57px;
+            text-align:center;
+            /* 居中 */
+            font-size: 18px;
+            /* 文字居中 */
+            font-weight: bold;
+            /* 文字粗细 */
+            color: #ff9607;
+            /* 文字颜色 */
+        }
+        .hot li:nth-child(n+4) .hot_item{
+            /* 选择到从4开始以后的标签 */
+            /* gt选择器 */
+            color: #999;
+        }
+        .hot ol {
+            counter-reset: jeff;/* 这是一个名为jeff计数器 */
+        }
+        .hot .hot_item:before{
+            counter-increment: jeff;/* 递增变量 */
+            content: counter(jeff); /* 将计数器结果赋值给content */
+        }
+        .hot .hot_item div.new{
+            width: 19px;
+            height: 19px;
+            margin: 0 auto;
+            border-radius: 4px;
+            background: rgb(255,150,7);
+            color: #fff;
+            font-size: 12px;
+            font-weight: normal;
+        }
+        .hot .hot_content{
+            flex: 1 1;
+            /* 
+            剩余空间内的弹性变化
+            默认值 0 1 auto
+            参数
+            1. 放大的比例
+            2. 收缩的比例
+            3. 默认的尺寸
+            */
+            overflow: hidden;
+            position: relative;
+            /* 相对定位 */
+        }
+        .hot .hot_content h2 {
+            font-size: 18px;
+            line-height: 28px;
+            /* 行高 */
+
+            /* 纯CSS实现2行缩略，局限，只能是webkit内核实现 */
+            display: -webkit-box;
+            -webkit-line-clamp: 2;/* 显示2行 */
+            -webkit-box-orient: vertical;/* 让子元素竖着排 */
+            overflow: hidden;
+        }
+        .hot .hot_content h2 a {
+            color: #1a1a1a;
+        }
+        .hot .hot_content p{
+            font-size: 15px;
+            line-height: 25px;
+            margin-top: 2px;
+
+            /* 实现单行缩略 */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .hot .hot_content p a{
+            color: #444;
+        }
+        .hot .tools{
+            position: absolute;
+            /* 绝对定位 */
+            bottom: 16px;
+            color: #8590a6;
+            font-size: 14px;
+            display: flex;
+        }
+        .hot .tools span:nth-child(1){
+            background: url(images/ico_01.gif) no-repeat left center;
+            /* 通过在背景置入图标图片进行字体图标的引入 no-repeat平铺 左 居中*/
+            padding-left: 13px;
+        }
+        .hot .tools span:nth-child(2){
+            background: url(images/ico_02.gif) no-repeat left center;
+            /* 通过在背景置入图标图片进行字体图标的引入 no-repeat平铺 左 居中*/
+            padding-left: 20px;
+            margin-left: 30px;
+        }
+        .hot .tools span a {
+            color: #8590a6;
+        }
+        .hot .hot_img{
+            margin-left: 16px;
+        }
+        
+        .hot .hot_img img {
+            width:190px;
+            height: 105px;
+            border-radius: 4px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="hot">
+        <!-- 左边数字 -->
+        <div class="hot_item"></div>
+
+        <!-- 中间文字 -->
+        <div class="hot_content">
+            <h2><a href="#">这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题</a></h2>
+            <p><a href="#">这是文章内容这是文章内容这是文章内容这是文章内容这是文章内容这是文章内容这是文章内容</a></p>
+            <div class="tools">
+                <span>12554万热度</span>
+                <span><a href="#">分享</a></span>
+            </div>
+        </div>
+
+        <!-- 右边图片 -->
+        <div class="hot_img">
+            <a href="#"><img src="这是图片的地址" alt="这是图片的描述"></a>
+        </div>
+    </div>
+    <div class="hot">
+        <!-- 左边数字 -->
+        <div class="hot_item"></div>
+
+        <!-- 中间文字 -->
+        <div class="hot_content">
+            <h2><a href="#">这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题</a></h2>
+            <p><a href="#">这是文章内容这是文章内容这是文章内容这是文章内容这是文章内容这是文章内容这是文章内容</a></p>
+            <div class="tools">
+                <span>12554万热度</span>
+                <span><a href="#">分享</a></span>
+            </div>
+        </div>
+
+        <!-- 右边图片 -->
+        <div class="hot_img">
+            <a href="#"><img src="这是图片的地址" alt="这是图片的描述"></a>
+        </div>
+    </div>
+    <div class="hot">
+        <!-- 左边数字 -->
+        <div class="hot_item"></div>
+
+        <!-- 中间文字 -->
+        <div class="hot_content">
+            <h2><a href="#">这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题</a></h2>
+            <p><a href="#">这是文章内容这是文章内容这是文章内容这是文章内容这是文章内容这是文章内容这是文章内容</a></p>
+            <div class="tools">
+                <span>12554万热度</span>
+                <span><a href="#">分享</a></span>
+            </div>
+        </div>
+
+        <!-- 右边图片 -->
+        <div class="hot_img">
+            <a href="#"><img src="这是图片的地址" alt="这是图片的描述"></a>
+        </div>
+    </div>
+    <div class="hot">
+        <!-- 左边数字 -->
+        <div class="hot_item">
+            <div class="new">新</div>
+        </div>
+
+        <!-- 中间文字 -->
+        <div class="hot_content">
+            <h2><a href="#">这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题这是文章标题</a></h2>
+            <p><a href="#">这是文章内容这是文章内容这是文章内容这是文章内容这是文章内容这是文章内容这是文章内容</a></p>
+            <div class="tools">
+                <span>12554万热度</span>
+                <span><a href="#">分享</a></span>
+            </div>
+        </div>
+
+        <!-- 右边图片 -->
+        <div class="hot_img">
+            <a href="#"><img src="这是图片的地址" alt="这是图片的描述"></a>
+        </div>
+    </div>
+</body>
+</html>
